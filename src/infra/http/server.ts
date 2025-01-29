@@ -2,8 +2,12 @@ import { env } from '@/env'
 import { fastifyCors } from '@fastify/cors'
 import { fastify } from 'fastify'
 
+import { fastifyMultipart } from '@fastify/multipart'
+import { fastifySwagger } from '@fastify/swagger'
+import { fastifySwaggerUi } from '@fastify/swagger-ui'
 import {
   hasZodFastifySchemaValidationErrors,
+  jsonSchemaTransform,
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod'
@@ -31,6 +35,21 @@ server.setErrorHandler((error, request, reply) => {
 
 // CORS Configuration
 server.register(fastifyCors, { origin: '*' })
+
+server.register(fastifyMultipart)
+server.register(fastifySwagger, {
+  openapi: {
+    info: {
+      title: 'Upload Server',
+      version: '1.0.0',
+    },
+  },
+  transform: jsonSchemaTransform,
+})
+
+server.register(fastifySwaggerUi, {
+  routePrefix: '/docs',
+})
 
 // Routes Configuration
 server.register(uploadImageRoute)
