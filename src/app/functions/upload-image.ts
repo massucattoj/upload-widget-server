@@ -1,6 +1,7 @@
 import { Readable } from 'node:stream'
 import { db } from '@/infra/db'
 import { schema } from '@/infra/db/schemas'
+import { uploadFileToStorage } from '@/infra/storage/upload-file-to-storage'
 import { type Either, makeLeft, makeRight } from '@/shared/either'
 import { z } from 'zod'
 import { InvalidFileFormat } from './errors/invalid-file-format'
@@ -25,13 +26,19 @@ export async function uploadImage(
     return makeLeft(new InvalidFileFormat())
   }
 
-  // TODO: load image to Cloudflare R2 Storage
+  // load image to Cloudflare R2 Storage
+  const { key, url } = await uploadFileToStorage({
+    folder: 'images',
+    fileName,
+    contentType,
+    contentStream,
+  })
 
   await db.insert(schema.uploads).values({
     name: fileName,
-    remoteKey: fileName,
-    remoteUrl: fileName,
+    remoteKey: key,
+    remoteUrl: url,
   })
 
-  return makeRight({ url: '' })
+  return makeRight({ url })
 }
