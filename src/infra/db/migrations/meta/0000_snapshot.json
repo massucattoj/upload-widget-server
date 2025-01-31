@@ -1,11 +1,11 @@
 {
-  "id": "2a4a192d-7411-428e-86d9-0d1f1b7c23a7",
+  "id": "ca78cb3d-4972-4ee9-9c03-f4572e7eee7c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.uploadas": {
-      "name": "uploadas",
+    "public.uploads": {
+      "name": "uploads",
       "schema": "",
       "columns": {
         "id": {
@@ -44,8 +44,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "uploadas_remote_key_unique": {
-          "name": "uploadas_remote_key_unique",
+        "uploads_remote_key_unique": {
+          "name": "uploads_remote_key_unique",
           "nullsNotDistinct": false,
           "columns": [
             "remote_key"

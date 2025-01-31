@@ -27,15 +27,23 @@ export const uploadImageRoute: FastifyPluginAsyncZod = async server => {
         return reply.status(400).send({ message: 'File is required' })
       }
 
-      // not .toBuffer()
-      // use streams instead +++ performance
+      /**
+       * Dont use .toBuffer() -> use streams instead +++ performance
+       */
 
-      // using the Either error or success
       const result = await uploadImage({
         fileName: uploadedFile.filename,
         contentType: uploadedFile.mimetype,
         contentStream: uploadedFile.file,
       })
+
+      /**
+       * Handle error if the image is bigger than the limit size
+       * Need to be after the function that consumes the streaming
+       */
+      if (uploadedFile.file.truncated) {
+        return reply.status(400).send({ message: 'File is too large.' })
+      }
 
       if (isRight(result)) {
         console.log(unwrapEither(result))

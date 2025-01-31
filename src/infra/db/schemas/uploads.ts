@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { pgTable, text, timestamp } from 'drizzle-orm/pg-core'
 import { uuidv7 } from 'uuidv7'
 
-export const uploads = pgTable('uploadas', {
+export const uploads = pgTable('uploads', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => uuidv7()),
