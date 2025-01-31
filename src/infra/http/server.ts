@@ -7,11 +7,12 @@ import { fastifySwagger } from '@fastify/swagger'
 import { fastifySwaggerUi } from '@fastify/swagger-ui'
 import {
   hasZodFastifySchemaValidationErrors,
-  jsonSchemaTransform,
+  // jsonSchemaTransform,
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod'
 import { uploadImageRoute } from './routes/upload-image'
+import { transformSwaggerSchema } from './transform-swagger-schema'
 
 const server = fastify()
 
@@ -44,7 +45,8 @@ server.register(fastifySwagger, {
       version: '1.0.0',
     },
   },
-  transform: jsonSchemaTransform,
+  transform: transformSwaggerSchema,
+  // transform: jsonSchemaTransform, // Transform the Zod schema to JSON Schema (OpenAPI - Swagger)
 })
 
 server.register(fastifySwaggerUi, {
