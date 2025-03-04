@@ -34,18 +34,16 @@ A modern and efficient file upload server built with TypeScript, Fastify, and AW
 - **Package Manager**: pnpm
 - **Code Quality**: Biome
 
-## 📦 Prerequisites
+## 📝 API Documentation
 
-- Node.js 20.x or higher
-- pnpm package manager
-- Docker and Docker Compose (for local development)
-- AWS account with S3 access (for production)
+Once the server is running, you can access the Swagger documentation at:
+- `/docs` - Swagger UI
 
 ## 🚀 Getting Started
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/massucattoj/upload-widget-server
    cd upload-widget-server
    ```
 
@@ -107,12 +105,6 @@ To build the project for production:
 ```bash
 pnpm build
 ```
-
-## 📝 API Documentation
-
-Once the server is running, you can access the Swagger documentation at:
-- `/documentation` - Swagger UI
-- `/documentation/json` - OpenAPI JSON specification
 
 ## 🐳 Docker Support
 
@@ -179,7 +171,7 @@ The codebase is organized following Clean Architecture principles with clear sep
    - HTTP middleware for cross-cutting concerns
    - Request/Response pipeline processing
    - Authentication, logging, error handling
-   
+
 ## 👏 Acknowledgments
 
 Special thanks to the amazing open-source projects that make this possible:
