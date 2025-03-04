@@ -8,7 +8,7 @@
 [![pnpm](https://img.shields.io/badge/pnpm-Latest-orange.svg)](https://pnpm.io/)
 [![Vitest](https://img.shields.io/badge/Vitest-3.0.4-green.svg)](https://vitest.dev/)
 
-A modern and efficient file upload server built with TypeScript, Fastify, and AWS S3 integration. This project provides a robust API for handling file uploads with features like CSV processing, type safety with Zod, and comprehensive testing.
+A modern and efficient file upload server built with TypeScript, Fastify, and Cloudfare R2 integration (using the aws sdk). This project provides a robust API for handling file uploads with features like CSV processing, type safety with Zod, and comprehensive testing.
 
 ## 🚀 Features
 
